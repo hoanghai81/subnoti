@@ -3,7 +3,7 @@ name: Subtitle Notifier
 on:
   schedule:
     - cron: '0 18 * * *'   # Chạy lúc 1h sáng hàng ngày (giờ Hà Nội = UTC+7)
-  workflow_dispatch:        # Cho phép chạy thủ công khi anh bấm "Run workflow"
+  workflow_dispatch:        # Cho phép anh chạy thủ công trong tab Actions
 
 jobs:
   check_subs:
@@ -27,5 +27,6 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-          BROWSERLESS_TOKEN: ${{ secrets.BROWSERLESS_TOKEN }}
-        run: python check_subs.py
+          SUBSOURCE_API_KEY: ${{ secrets.SUBSOURCE_API_KEY }}
+        run: |
+          python check_subs.py
